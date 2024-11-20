@@ -2,13 +2,13 @@
  #grid-container {
     display: grid;
     grid-template-columns: repeat(28, 50px);
-    grid-template-rows: repeat(20, 50px);
+    grid-template-rows: repeat(6, 50px);
     gap: 2px;
-    border: 1px solid #ddd;
     width: 100%;
     max-width: 300px;
     margin: 0 auto;
     margin-left: 40px;
+    border: none;
 }
 .grid-cell {
     display: grid;
