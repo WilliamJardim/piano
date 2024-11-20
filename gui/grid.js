@@ -1,5 +1,5 @@
 // Estrutura de dados para armazenar o estado dos cubos
-let gridData = Array(5).fill().map(() => Array(5).fill(null));
+let gridData = Array(20).fill().map(() => Array(28).fill(null));
 
 const gridContainer = document.getElementById('grid-container');
 
