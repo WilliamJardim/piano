@@ -1,4 +1,4 @@
-var nomeInstrumento = 'violino';
+var nomeInstrumento = 'piano';
 
 //Teclas de cima
 document.getElementById('teclas-cima').innerHTML = ``;
