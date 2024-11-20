@@ -1,102 +1,79 @@
+// Estrutura de dados para armazenar o estado dos cubos
+let gridData = Array(5).fill().map(() => Array(5).fill(null));
+
 const gridContainer = document.getElementById('grid-container');
-const output = document.getElementById('output');
 
-// Create grid
-for (let i = 0; i < 100; i++) {
-    const cell = document.createElement('div');
-    cell.classList.add('grid-cell');
-    cell.dataset.index = i;
-    gridContainer.appendChild(cell);
+// Variável global para bloquear a adição temporária
+let canAddCube = true; 
 
-    cell.addEventListener('click', () => addSquare(cell));
-}
+// Função para renderizar a grid e os cubos
+function renderGrid() {
+    gridContainer.innerHTML = ''; // Limpa o grid existente
 
-// Add a square to a cell
-function addSquare(cell) {
-    if (!cell.querySelector('.square')) {
-        const square = document.createElement('div');
-        square.classList.add('square');
-        square.draggable = true;
+    // Itera sobre as células da grid
+    for (let row = 0; row < gridData.length; row++) {
+        for (let col = 0; col < gridData[row].length; col++) {
+            const cell = document.createElement('div');
+            cell.classList.add('grid-cell');
+            cell.dataset.index = `${row}-${col}`;
 
-        square.addEventListener('dragstart', dragStart);
-        square.addEventListener('dragend', dragEnd);
+            // Verificar se a célula contém cubos (dados) e renderizar
+            const cubeData = gridData[row][col];
+            if (cubeData != null) {
+                const cube = document.createElement('div');
+                cube.classList.add('grid-cube');
+                cube.dataset.cubeData = JSON.stringify(cubeData);
+                cube.style.backgroundColor = '#28a745'; // Cor para cubos "preenchidos"
 
-        // Adicionar evento de clique para remover o quadrado
-        square.addEventListener('click', (e) => {
-            e.stopPropagation(); // Evita que o evento clique atinja a célula
-            removeSquare(square);
-        });
+                // Armazenar as informações de linha e coluna no elemento
+                cube.dataset.row = row; // Guardar a linha
+                cube.dataset.col = col; // Guardar a coluna
 
-        cell.appendChild(square);
-    }
-}
+                // Adicionar evento de clique para remover o cubo
+                cube.addEventListener('click', function(e) {
+                    removeCube(e.target.dataset.row, e.target.dataset.col);
+                });
 
-function removeSquare(square) {
-    if (square && square.parentElement) {
-        square.parentElement.removeChild(square);
-    }
-}
-
-// Drag and drop functionality
-let draggedSquare = null;
-
-function dragStart(e) {
-    draggedSquare = e.target;
-    setTimeout(() => draggedSquare.classList.add('hidden'), 0);
-}
-
-function dragEnd(e) {
-    draggedSquare.classList.remove('hidden');
-    draggedSquare = null;
-}
-
-gridContainer.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    const cell = e.target.closest('.grid-cell');
-    if (cell && !cell.querySelector('.square')) {
-        cell.appendChild(draggedSquare);
-    }
-});
-
-// Read the grid and output groupings
-function lerGrid(){
-    const groupings = [];
-    const cells = document.querySelectorAll('.grid-cell');
-
-    for (let i = 0; i < 50; i++) {
-        const row = [];
-        for (let j = 0; j < 50; j++) {
-            const cell = cells[i * 50 + j];
-            if ( cell && cell.querySelector('.square')) {
-                row.push(cell.dataset.index);
+                cell.appendChild(cube);
             }
-        }
-        if (row.length > 0) {
-            groupings.push(row);
+
+            // Adicionar evento de clique na célula para adicionar cubo
+            cell.addEventListener('click', () => {
+                if (!gridData[row][col] && canAddCube) { // Se não houver cubo, adicionar um
+                    canAddCube = false; // Desativa a adição temporariamente
+
+                    setTimeout(() => {
+                        addCube(row, col);  // Adiciona o cubo após o tempo de espera
+                        canAddCube = true;   // Permite adicionar cubos novamente após 500ms
+                    }, 100); // Espera 500ms antes de permitir a adição do cubo
+                }
+            });
+
+            gridContainer.appendChild(cell);
         }
     }
-
-    return groupings;
 }
 
-
-/*
-const piano = document.querySelector('.piano');
-const whiteKeysCount    = 18;              // Quantidade de teclas brancas
-const blackKeyPositions = [2, 3, 5, 6, 7]; // Posições das teclas pretas em cada oitava (sem as teclas brancas 3 e 7)
-
-for (let i = 0; i < whiteKeysCount; i++) {
-    // Criar tecla branca
-    const whiteKey = document.createElement('div');
-    whiteKey.classList.add('white-key');
-    piano.appendChild(whiteKey);
-    
-    // Checar se deve adicionar uma tecla preta (em posições específicas)
-    if (blackKeyPositions.includes(i % 7)) {  // As teclas pretas se repetem a cada 7 teclas brancas
-        const blackKey = document.createElement('div');
-        blackKey.classList.add('black-key');
-        // Posicionar corretamente sobre as teclas brancas
-        blackKey.style.gridColumn = i + 2;  // Tecla preta fica entre as teclas brancas
-        piano.appendChild(blackKey);
+// Função para adicionar um cubo na grid
+function addCube(row, col) {
+    // Verifica se já há um cubo nesta posição
+    if ( gridData[row][col] == null ) {
+        const newCubeData = { name: 'Novo Cubo', color: '#28a745' }; // Dados fictícios do cubo
+        gridData[row][col] = newCubeData;  // Armazena os dados do cubo na gridData
+        renderGrid();  // Redesenha a grid para refletir a mudança
     }
-}*/
+}
+
+// Função para remover um cubo da grid
+function removeCube(row, col) {
+    // Limpa os dados da célula na gridData
+    gridData[row][col] = null;  // Remove o cubo (define como null)
+    renderGrid();  // Redesenha a grid para refletir a remoção
+    canAddCube = false;
+    setTimeout(()=>{
+        canAddCube = true;
+    }, 500)
+}
+
+// Inicializa a grid
+renderGrid();
