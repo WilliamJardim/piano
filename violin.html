@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Violino</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        #violinCanvas {
+            border: 1px solid #000;
+            background-color: #e0e0e0;
+            width: 800px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simulador de Violino</h1>
+    <canvas id="violinCanvas"></canvas>
+
+    <script src="instrumentos.js">
+    </script>
+
+    <script>
+         // Função para tocar um violino com os valores dos inputs
+         function playViolinFromInputs() {
+            const frequency = parseFloat(document.getElementById('frequency').value);
+            const duration = parseFloat(document.getElementById('duration').value);
+            const startTime = parseFloat(document.getElementById('startTime').value);
+            playViolin(frequency, duration, startTime);
+        }
+
+        // Função para desenhar as cordas no canvas
+        function drawStrings(ctx) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const numStrings = 15;
+            const stringSpacing = canvas.height / (numStrings + 1);
+            ctx.strokeStyle = '#000';
+            ctx.lineWidth = 2;
+            for (let i = 1; i <= numStrings; i++) {
+                ctx.beginPath();
+                ctx.moveTo(0, i * stringSpacing);
+                ctx.lineTo(canvas.width, i * stringSpacing);
+                ctx.stroke();
+            }
+        }
+
+        const canvas = document.getElementById('violinCanvas');
+        const ctx = canvas.getContext('2d');
+        drawStrings(ctx);
+
+        let isPlaying = false;
+        let startX, startY, currentString, lastFrequency;
+
+        canvas.addEventListener('mousedown', (e) => {
+            isPlaying = true;
+            startX = e.offsetX;
+            startY = e.offsetY;
+            currentString = Math.floor(startY / (canvas.height / 5)) + Math.floor(startX / (canvas.width / 5));
+            lastFrequency = 300 + currentString * 25; // Frequências aproximadas para cada corda
+            playViolin( lastFrequency, 0.5, 0); // Começa a tocar a nota
+        });
+
+        canvas.addEventListener('mousemove', (e) => {
+            if (!isPlaying) return;
+
+            const x = e.offsetX;
+            const y = e.offsetY;
+            const newString = Math.floor(y / (canvas.height / 5));
+            const frequency = 440 + newString * 20;
+
+            if (newString !== currentString || lastFrequency !== frequency) {
+                playViolin(frequency, 0.5, 0);
+                lastFrequency = frequency;
+                currentString = newString;
+            }
+        });
+
+        canvas.addEventListener('mouseup', () => {
+            isPlaying = false;
+        });
+
+        canvas.addEventListener('mouseleave', () => {
+            isPlaying = false;
+        });
+    </script>
+</body>
+</html>

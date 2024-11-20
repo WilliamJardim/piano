@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .teclas{
+          overflow-x: scroll;
+          overflow-y: none;
+          width: 100%;
+        }
+
+        .piano-key {
+          width: 900vw;
+          height: 200px;
+          display: inline-block;
+          margin: 1px;
+          background: white;
+          border: 1px solid black;
+          cursor: pointer;
+          position: relative;
+        }
+
+        .container {
+          display: flex;
+          flex-wrap: nowrap;
+        }
+      </style>
+
+</head>
+<body>
+    <div class="teclas"> 
+      <!-- White keys -->
+      <div class="container">
+        <div class="piano-key" data-note="C-2"></div>
+        <div class="piano-key black" data-note="C#-2"></div>
+        <div class="piano-key" data-note="D-2"></div>
+        <div class="piano-key black" data-note="D#-2"></div>
+        <div class="piano-key" data-note="E-2"></div>
+        <div class="piano-key" data-note="F-2"></div>
+        <div class="piano-key black" data-note="F#-2"></div>
+        <div class="piano-key" data-note="G-2"></div>
+        <div class="piano-key black" data-note="G#-2"></div>
+        <div class="piano-key" data-note="A-2"></div>
+        <div class="piano-key black" data-note="A#-2"></div>
+        <div class="piano-key" data-note="B-2"></div>
+        <div class="piano-key" data-note="C-1"></div>
+        <div class="piano-key black" data-note="C#-1"></div>
+        <div class="piano-key" data-note="D-1"></div>
+        <div class="piano-key black" data-note="D#-1"></div>
+        <div class="piano-key" data-note="E-1"></div>
+        <div class="piano-key" data-note="F-1"></div>
+        <div class="piano-key black" data-note="F#-1"></div>
+        <div class="piano-key" data-note="G-1"></div>
+        <div class="piano-key black" data-note="G#-1"></div>
+        <div class="piano-key" data-note="A-1"></div>
+        <div class="piano-key black" data-note="A#-1"></div>
+        <div class="piano-key" data-note="B-1"></div>
+        <div class="piano-key" data-note="C0"></div>
+        <div class="piano-key black" data-note="C#0"></div>
+        <div class="piano-key" data-note="D0"></div>
+        <div class="piano-key black" data-note="D#0"></div>
+        <div class="piano-key" data-note="E0"></div>
+        <div class="piano-key" data-note="F0"></div>
+        <div class="piano-key black" data-note="F#0"></div>
+        <div class="piano-key" data-note="G0"></div>
+        <div class="piano-key black" data-note="G#0"></div>
+        <div class="piano-key" data-note="A0"></div>
+        <div class="piano-key black" data-note="A#0"></div>
+        <div class="piano-key" data-note="B0"></div>
+        <div class="piano-key" data-note="C1"></div>
+        <div class="piano-key black" data-note="C#1"></div>
+        <div class="piano-key" data-note="D1"></div>
+        <div class="piano-key black" data-note="D#1"></div>
+        <div class="piano-key" data-note="E1"></div>
+        <div class="piano-key" data-note="F1"></div>
+        <div class="piano-key black" data-note="F#1"></div>
+        <div class="piano-key" data-note="G1"></div>
+        <div class="piano-key black" data-note="G#1"></div>
+        <div class="piano-key" data-note="A1"></div>
+        <div class="piano-key black" data-note="A#1"></div>
+        <div class="piano-key" data-note="B1"></div>
+        <div class="piano-key" data-note="C2"></div>
+        <div class="piano-key" data-note="C3"></div>
+        <div class="piano-key" data-note="C4"></div>
+        <div class="piano-key" data-note="C5"></div>
+      </div>
+    </div>
+     
+</body>
+
+<script src="notesmap.js"></script>
+<script src="instrumentos.js"></script>
+<script src="main.js"></script>
+<script src="example.js"></script>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Layout de Piano</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="grid.css">
+</head>
+<body>
+  <div class="app-interface">
+    <h1>Meu App de Piano</h1>
+
+    <div id="grid-container"></div>
+  </div>
+
+  <div class="piano">
+    
+    <!-- Teclas Brancas -->
+    <div class="piano-container">
+      <div class="container-keys keys-black">
+        <div class="key empty"></div>
+        
+          <!-- Teclas Pretas -->
+          <div class="key black" data-note="C#"></div>
+          <div class="key black" data-note="D#"></div>
+          <div class="key black" data-note="F#"></div>
+          <div class="key black" data-note="G#"></div>
+          <div class="key black" data-note="A#"></div>
+
+          <div class="key black" data-note="C#"></div>
+          <div class="key black" data-note="D#"></div>
+          <div class="key black" data-note="F#"></div>
+          <div class="key black" data-note="G#"></div>
+          <div class="key black" data-note="A#"></div>
+
+          <div class="key black" data-note="C#"></div>
+          <div class="key black" data-note="D#"></div>
+          <div class="key black" data-note="F#"></div>
+          <div class="key black" data-note="G#"></div>
+          <div class="key black" data-note="A#"></div>
+
+        <div class="key empty"></div>
+      </div>
+
+      <div class="container-keys keys-white">
+        <!-- Teclas Brancas -->
+        <div class="key white" data-note="C"></div>
+        <div class="key white" data-note="D"></div>
+        <div class="key white" data-note="E"></div>
+        <div class="key white" data-note="F"></div>
+        <div class="key white" data-note="G"></div>
+        <div class="key white" data-note="A"></div>
+        <div class="key white" data-note="B"></div>
+
+        <div class="key white" data-note="C"></div>
+        <div class="key white" data-note="D"></div>
+        <div class="key white" data-note="E"></div>
+        <div class="key white" data-note="F"></div>
+        <div class="key white" data-note="G"></div>
+        <div class="key white" data-note="A"></div>
+        <div class="key white" data-note="B"></div>
+
+        <div class="key white" data-note="C"></div>
+        <div class="key white" data-note="D"></div>
+        <div class="key white" data-note="E"></div>
+        <div class="key white" data-note="F"></div>
+        <div class="key white" data-note="G"></div>
+        <div class="key white" data-note="A"></div>
+        <div class="key white" data-note="B"></div>
+      </div>
+      
+    </div>
+  </div>
+</body>
+
+<script src="grid.js"></script>
+</html>
