@@ -1,4 +1,4 @@
-var nomeInstrumento = 'piano';
+var nomeInstrumento = 'violino';
 
 //Teclas de cima
 document.getElementById('teclas-cima').innerHTML = ``;
@@ -33,6 +33,10 @@ document.querySelectorAll('.key').forEach( (key, keyIndex) => {
             case 'piano':
                  playPiano(Number(note), 0.2);
                  break;
+
+            case 'violino':
+                playViolin(Number(note), 0.5, 0);
+                break;
 
             default:
                 break;
