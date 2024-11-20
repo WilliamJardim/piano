@@ -138,7 +138,7 @@ function playComposition( compositionObj ){
 }
 
 
-
+/*
   document.querySelectorAll('.container')[0].innerHTML = ``;
   for( let i = 300 ; i < 1090 ; i = i + 10 ){
     document.querySelectorAll('.container')[0].innerHTML += `<div class="piano-key" data-convert="false" data-note="${i}"></div>`;
@@ -157,3 +157,4 @@ document.querySelectorAll('.piano-key').forEach(key => {
       }
   });
 });
+*/
